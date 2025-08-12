@@ -1,0 +1,69 @@
+[project]
+name = "QRCheck"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Emanuelly Bedim Jorge Borges",email = "emanuellybb@gmail.com"},
+    {name = "Marcos Lopes Ribeiro",email = "raphaelcardosolopzes@gmail.com"},
+    {name = "Rafael Silva Guimarães",email = "rafaelsg@gmail.com"},
+    {name = "Raphael Cardoso Lopes da Silva",email = "marcoslopesribeir@gmail.com"},
+    {name = "Walace Louzada Peixoto",email = "walpxt2006@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13,<4.0"
+dependencies = [
+    "fastapi[standard] (>=0.115.6,<0.116.0)",
+    "sqlalchemy[asyncio] (>=2.0.40,<3.0.0)",
+    "psycopg2-binary (>=2.9.10,<3.0.0)",
+    "pydantic-settings (>=2.7.1,<3.0.0)",
+    "alembic (>=1.14.1,<2.0.0)",
+    "pwdlib[argon2] (>=0.2.1,<0.3.0)",
+    "python-multipart (>=0.0.20,<0.0.21)",
+    "tzdata (>=2025.1,<2026.0)",
+    "python-dateutil (>=2.9.0.post0,<3.0.0)",
+    "loguru (>=0.7.3,<0.8.0)",
+    "user-agents (>=2.2.0,<3.0.0)",
+    "asyncpg (>=0.30.0,<0.31.0)",
+    "pyjwt (>=2.10.1,<3.0.0)",
+    "aiosqlite (>=0.21.0,<0.22.0)",
+    "pytest-asyncio (>=0.26.0,<0.27.0)",
+    "pydantic-i18n (>=0.4.5,<0.5.0)"
+
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+taskipy = "^1.14.1"
+ruff = "^0.9.2"
+
+# Atalhos de terminal
+pytest = "^8.3.5"
+pytest-cov = "^6.1.1"
+[tool.taskipy.tasks]
+run = 'poetry run uvicorn qrcheck.app:app --reload'
+lint = 'ruff check . && ruff check . --diff'
+format = 'ruff check . --fix && ruff format .'
+populate = 'python populate_db/run_populates.py'
+test = 'pytest -s -x --cov=qrcheck -vv'
+post_test = 'coverage html'
+
+# Ruff: lint é uma verificação de erros de sintaxe e da qualidade do código.
+# Ruff: format executa uma formatação que ajusta o código para as boas práticas de programação.
+
+[tool.ruff]
+line-length = 131
+extend-exclude = ['migrations']
+exclude = [
+    "populate_db",  # Diretório completo
+]
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.pytest.ini_options]
+pythonpath = "."
+addopts = '-p no:warnings'

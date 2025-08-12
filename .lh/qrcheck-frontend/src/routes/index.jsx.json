@@ -1,0 +1,38 @@
+{
+    "sourceFile": "qrcheck-frontend/src/routes/index.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1754529345357,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1754529642026,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,12 @@\n // routes/index.jsx\n import { Routes, Route, Navigate } from \"react-router-dom\";\n-import Home            from \"@/pages/Home\";\n-import Login           from \"@/pages/Login\";\n-import Profile         from \"@/pages/Profile\";\n-import Register        from \"@/pages/Register\";\n+import Home from \"@/pages/Home\";\n+import Login from \"@/pages/Login\";\n+import Profile from \"@/pages/Profile\";\n+import Register from \"@/pages/Register\";\n import ConnectionTest  from \"../components/ConnectionTest\";\n-import PrivateRoute    from \"../components/PrivateRoute\";\n+import PrivateRoute    from \"..PrivateRouter\";\n import '../index.css';\n \n const Router = () => (\n   <Routes>\n"
+                },
+                {
+                    "date": 1754529652257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import Login from \"@/pages/Login\";\n import Profile from \"@/pages/Profile\";\n import Register from \"@/pages/Register\";\n import ConnectionTest  from \"../components/ConnectionTest\";\n-import PrivateRoute    from \"..PrivateRouter\";\n+import PrivateRoute    from \"PrivateRouter\";\n import '../index.css';\n \n const Router = () => (\n   <Routes>\n"
+                },
+                {
+                    "date": 1754529673072,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import Login from \"@/pages/Login\";\n import Profile from \"@/pages/Profile\";\n import Register from \"@/pages/Register\";\n import ConnectionTest  from \"../components/ConnectionTest\";\n-import PrivateRoute    from \"PrivateRouter\";\n+import PrivateRoute    from \"../components/PrivateRouter\";\n import '../index.css';\n \n const Router = () => (\n   <Routes>\n"
+                },
+                {
+                    "date": 1754529752461,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import Login from \"@/pages/Login\";\n import Profile from \"@/pages/Profile\";\n import Register from \"@/pages/Register\";\n import ConnectionTest  from \"../components/ConnectionTest\";\n-import PrivateRoute    from \"../components/PrivateRouter\";\n+import PrivateRoute    from \"../components/PrivateRoute\";\n import '../index.css';\n \n const Router = () => (\n   <Routes>\n"
+                },
+                {
+                    "date": 1754615713840,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,10 +3,10 @@\n import Home from \"@/pages/Home\";\n import Login from \"@/pages/Login\";\n import Profile from \"@/pages/Profile\";\n import Register from \"@/pages/Register\";\n-import ConnectionTest  from \"../components/ConnectionTest\";\n-import PrivateRoute    from \"../components/PrivateRoute\";\n+// import ConnectionTest  from \"../components/ConnectionTest\";\n+// import PrivateRoute    from \"../components/PrivateRoute\";\n import '../index.css';\n \n const Router = () => (\n   <Routes>\n"
+                }
+            ],
+            "date": 1754529345357,
+            "name": "Commit-0",
+            "content": "// routes/index.jsx\nimport { Routes, Route, Navigate } from \"react-router-dom\";\nimport Home            from \"@/pages/Home\";\nimport Login           from \"@/pages/Login\";\nimport Profile         from \"@/pages/Profile\";\nimport Register        from \"@/pages/Register\";\nimport ConnectionTest  from \"../components/ConnectionTest\";\nimport PrivateRoute    from \"../components/PrivateRoute\";\nimport '../index.css';\n\nconst Router = () => (\n  <Routes>\n    {/* Públicas */}\n    <Route path=\"/\"        element={<Home />} />\n    <Route path=\"/login\"   element={<Login />} />\n    <Route path=\"/register\"element={<Register />} />\n\n    {/* Protegidas */}\n    <Route\n      path=\"/profile\"\n      element={\n        <PrivateRoute>\n          <Profile />\n        </PrivateRoute>\n      }\n    />\n    <Route\n      path=\"/test\"\n      element={\n        <PrivateRoute>\n          <ConnectionTest />\n        </PrivateRoute>\n      }\n    />\n\n    {/* Qualquer outra rota */}\n    <Route path=\"*\" element={<Navigate to=\"/\" replace />} />\n  </Routes>\n);\n\nexport default Router;\n"
+        }
+    ]
+}

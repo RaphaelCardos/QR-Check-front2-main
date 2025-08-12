@@ -1,0 +1,18 @@
+{
+    "sourceFile": "qrcheck-frontend/src/services/necessidadeService.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1754615713787,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1754615713787,
+            "name": "Commit-0",
+            "content": "import api from './api'\r\n\r\n// GET /necessidades\r\nexport const listarNecessidades   = () =>\r\n  api.get('/necessidades').then(res => res.data)\r\n\r\n// POST /necessidades\r\nexport const criarNecessidade     = data =>\r\n  api.post('/necessidades', data).then(res => res.data)\r\n\r\n// PATCH /necessidades/:id\r\nexport const atualizarNecessidade = (id, data) =>\r\n  api.patch(`/necessidades/${id}`, data).then(res => res.data)\r\n\r\n// DELETE /necessidades/:id\r\nexport const removerNecessidade   = id =>\r\n  api.delete(`/necessidades/${id}`).then(res => res.data)\r\n"
+        }
+    ]
+}

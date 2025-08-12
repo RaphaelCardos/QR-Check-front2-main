@@ -1,0 +1,68 @@
+// src/services/participanteService.js
+import api from './api';
+
+export const registerParticipante = async (participanteData) => {
+  const payload = {
+    nome: participanteData.nome,
+    sobrenome: participanteData.sobrenome,
+    email: participanteData.email,
+    senha: participanteData.senha,
+    cpf: participanteData.cpf.replace(/\D/g, ''),
+    data_nasc: participanteData.nascimento,
+    ocupacao_id: participanteData.ocupacao_id || 1,
+    necessidades_especificas: participanteData.necessidades || []
+  };
+
+  try {
+    const response = await api.post('/admin/participantes/cadastro', payload);
+    if (response.data.access_token) {
+      localStorage.setItem('access_token', response.data.access_token);
+    }
+    return response.data;
+
+  } catch (error) {
+    const { status, data } = error.response || {};
+    console.error('❌ Erro registerParticipante: status', status);
+    
+    if (data?.detail) {
+      console.error('❌ Detalhes do validation error:');
+      data.detail.forEach((d, i) => {
+        console.error(`  [${i}] loc=${JSON.stringify(d.loc)}, msg="${d.msg}"`);
+      });
+    } else {
+      console.error('❌ responseData:', data);
+    }
+
+    if (status === 422 && Array.isArray(data.detail)) {
+      const fieldErrors = data.detail.reduce((acc, errItem) => {
+        if (Array.isArray(errItem.loc) && errItem.loc.length >= 2) {
+          const field = errItem.loc[1];
+          acc[field] = errItem.msg || errItem.message || 'Erro de validação';
+        }
+        return acc;
+      }, {});
+      throw { ...error, fieldErrors };
+    }
+
+    throw error;
+  }
+};
+
+
+// ── Busca perfil do participante autenticado ───────────────────────────────
+export const getParticipantePerfil = async () => {
+  const response = await api.get('/meu-perfil');
+  return response.data;
+};
+
+// ── Busca um participante por ID (admin) ──────────────────────────────────
+export const getParticipante = async (id) => {
+  const response = await api.get(`/participantes/${id}`);
+  return response.data;
+};
+
+// ── Atualiza um participante por ID (admin) ───────────────────────────────
+export const updateParticipante = async (id, data) => {
+  const response = await api.patch(`/participantes/${id}`, data);
+  return response.data;
+};

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "qrcheck-frontend/src/services/authService.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1754569097078,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1754569097078,
+            "name": "Commit-0",
+            "content": "// src/services/authService.js\r\nimport api from './api';\r\n\r\n/**\r\n * Faz login usando OAuth2 Password Flow.\r\n * Envia username e password como form-urlencoded,\r\n * armazena access_token e refresh_token (se houver) no localStorage.\r\n *\r\n * @param {string} email\r\n * @param {string} password\r\n * @returns {Promise<{ access_token: string, refresh_token?: string, token_type: string }>}\r\n */\r\nexport const login = async (email, password) => {\r\n  const form = new URLSearchParams();\r\n  form.append('username', email);\r\n  form.append('password', password);\r\n\r\n  try {\r\n    const response = await api.post('/auth/token', form, {\r\n      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },\r\n    });\r\n    const { access_token, refresh_token, token_type } = response.data;\r\n\r\n    if (access_token) {\r\n      localStorage.setItem('access_token', access_token);\r\n    }\r\n    if (refresh_token) {\r\n      localStorage.setItem('refresh_token', refresh_token);\r\n    }\r\n\r\n    return { access_token, refresh_token, token_type };\r\n  } catch (error) {\r\n    console.error('❌ Erro ao fazer login:', error.response?.data || error.message);\r\n    throw error;\r\n  }\r\n};\r\n\r\n/**\r\n * Renova o access token usando o refresh token armazenado.\r\n * Reenvia refresh_token como form-urlencoded e atualiza o storage.\r\n *\r\n * @returns {Promise<{ access_token: string, refresh_token?: string, token_type: string }>}\r\n */\r\nexport const refreshToken = async () => {\r\n  const token = localStorage.getItem('refresh_token');\r\n  if (!token) {\r\n    throw new Error('Sem refresh token disponível');\r\n  }\r\n\r\n  const form = new URLSearchParams();\r\n  form.append('refresh_token', token);\r\n\r\n  try {\r\n    const response = await api.post('/auth/refresh', form, {\r\n      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },\r\n    });\r\n    const { access_token, refresh_token: newRefresh, token_type } = response.data;\r\n\r\n    if (access_token) {\r\n      localStorage.setItem('access_token', access_token);\r\n    }\r\n    if (newRefresh) {\r\n      localStorage.setItem('refresh_token', newRefresh);\r\n    }\r\n\r\n    return { access_token, refresh_token: newRefresh, token_type };\r\n  } catch (error) {\r\n    console.error('❌ Erro ao renovar token:', error.response?.data || error.message);\r\n    throw error;\r\n  }\r\n};\r\n"
+        }
+    ]
+}

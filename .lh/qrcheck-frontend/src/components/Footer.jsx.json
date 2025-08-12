@@ -1,0 +1,22 @@
+{
+    "sourceFile": "qrcheck-frontend/src/components/Footer.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1754871663427,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1754871770962,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,32 +1,35 @@\n const Footer = () => {\n   return (\n     <footer className=\"bg-green-900 text-white p-6 z-20\">\n       <div className=\"container mx-auto\">\n-        {/* Grid de logos */}\n-        <div className=\"grid grid-cols-1 md:grid-cols-3 gap-6 items-center justify-items-center\">\n-          <img\n-            src=\"/logo incubadora.png\"\n-            alt=\"Incubadora IFES\"\n-            className=\"h-16 object-contain\"\n-          />\n-          <img\n-            src=\"/logo lair.png\"\n-            alt=\"LAIR\"\n-            className=\"h-16 object-contain\"\n-          />\n-          <img\n-            src=\"/logo LEDS.png\"\n-            alt=\"LEDS\"\n-            className=\"h-16 object-contain\"\n-          />\n-        </div>\n-\n-        {/* Texto de direitos autorais */}\n-        <div className=\"mt-6 pt-6 border-t border-green-800 text-center text-sm\">\n-          <p>\n+        <div className=\"flex flex-col md:flex-row items-center md:items-end md:justify-between\">\n+          {/* Texto de direitos autorais */}\n+          <p className=\"text-sm mb-4 md:mb-0\">\n             &copy; {new Date().getFullYear()} QRCheck. Todos os direitos reservados.\n           </p>\n+\n+          {/* Desenvolvido por + logos */}\n+          <div className=\"flex flex-col md:items-end\">\n+            <span className=\"text-sm mb-2\">Desenvolvido por:</span>\n+            <div className=\"flex gap-4\">\n+              <img\n+                src=\"/logo incubadora.png\"\n+                alt=\"Incubadora IFES\"\n+                className=\"h-10 object-contain\"\n+              />\n+              <img\n+                src=\"/logo lair.png\"\n+                alt=\"LAIR\"\n+                className=\"h-10 object-contain\"\n+              />\n+              <img\n+                src=\"/logo LEDS.png\"\n+                alt=\"LEDS\"\n+                className=\"h-10 object-contain\"\n+              />\n+            </div>\n+          </div>\n         </div>\n       </div>\n     </footer>\n   );\n"
+                }
+            ],
+            "date": 1754871663426,
+            "name": "Commit-0",
+            "content": "const Footer = () => {\n  return (\n    <footer className=\"bg-green-900 text-white p-6 z-20\">\n      <div className=\"container mx-auto\">\n        {/* Grid de logos */}\n        <div className=\"grid grid-cols-1 md:grid-cols-3 gap-6 items-center justify-items-center\">\n          <img\n            src=\"/logo incubadora.png\"\n            alt=\"Incubadora IFES\"\n            className=\"h-16 object-contain\"\n          />\n          <img\n            src=\"/logo lair.png\"\n            alt=\"LAIR\"\n            className=\"h-16 object-contain\"\n          />\n          <img\n            src=\"/logo LEDS.png\"\n            alt=\"LEDS\"\n            className=\"h-16 object-contain\"\n          />\n        </div>\n\n        {/* Texto de direitos autorais */}\n        <div className=\"mt-6 pt-6 border-t border-green-800 text-center text-sm\">\n          <p>\n            &copy; {new Date().getFullYear()} QRCheck. Todos os direitos reservados.\n          </p>\n        </div>\n      </div>\n    </footer>\n  );\n};\n\nexport default Footer;\n"
+        }
+    ]
+}
