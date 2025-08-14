@@ -27,6 +27,11 @@ const Footer = () => {
                 alt="LEDS"
                 className="h-10 object-contain"
               />
+              <img 
+                src="/hub_.png"
+                alt="Hub"
+                className="h-15 object-contain"
+                />
             </div>
           </div>
         </div>
